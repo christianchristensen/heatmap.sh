@@ -3,8 +3,11 @@
 # heatmap
 #  https://github.com/christianchristensen/heatmap.sh
 # Heatmaps in your terminal
+# (based off sparklines: https://github.com/holman/spark)
+#
 # ex
-# $ heatmap.sh (x width) (v1 v2 vn values)
+# heatmap.sh (x width) (v1 v2 vn values)
+#  (y "length" is based off the number of values read)
 # $ heatmap.sh 6 1 3 6 1 8 3 3 5 6 8 5 5 ...
 # ░▒▓░█▒
 # ▒▓▓█▓▓
