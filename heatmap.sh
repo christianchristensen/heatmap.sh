@@ -2,23 +2,14 @@
 #
 # heatmap
 #  https://github.com/christianchristensen/heatmap.sh
+#
 # Heatmaps in your terminal
 # (based off sparklines: https://github.com/holman/spark)
 #
-# ex
-# heatmap.sh (x width) (v1 v2 vn values)
-#  (y "length" is based off the number of values read)
-# $ heatmap.sh 6 1 3 6 1 8 3 3 5 6 8 5 5 ...
-# ░▒▓░█▒
-# ▒▓▓█▓▓
-# █▓▓▓▒▓
-# ▒▓▒█▓▒
-# ░▒▓███
-
 # Input X:size, Y (inferred/defaulted from X size)
 # Input values populate based on X,Y size
 
-# Generates sparklines.
+# Generates the heatmap.
 #
 # $1 - The data we'd like to graph.
 _echo()
@@ -31,7 +22,7 @@ _echo()
   fi
 }
 
-spark()
+heatmap()
 {
   local n numbers=
 
@@ -50,7 +41,7 @@ spark()
   done
 
   # print ticks
-  local ticks=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █)
+  local ticks=(░ ░ ▒ ▒ ▓ ▓ █ █)
 
   local f=$(( (($max-$min)<<8)/(${#ticks[@]}-1) ))
   (( f < 1 )) && f=1
@@ -60,25 +51,31 @@ spark()
     _echo -n ${ticks[$(( ((($n-$min)<<8)/$f) ))]}
   done
   _echo
+
+    cat <<EOF
+░▒▓░█▒
+▒▓▓█▓▓
+█▓▓▓▒▓
+▒▓▒█▓▒
+░▒▓███
+EOF
 }
 
 # If we're being sourced, don't worry about such things
 if [ "$BASH_SOURCE" == "$0" ]; then
-  # Prints the help text for spark.
+  # Prints the help text for heatmap.sh.
   help()
   {
     cat <<EOF
 
     USAGE:
-      spark [-h|--help] VALUE,...
+      heatmap.sh [-h|--help] X-WIDTH VALUE,...
+       (y "length" is based off the number of values read)
 
     EXAMPLES:
-      spark 1 5 22 13 53
-      ▁▁▃▂█
-      spark 0,30,55,80,33,150
-      ▁▂▃▄▂█
-      echo 9 13 5 17 1 | spark
-      ▄▆▂█▁
+      heatmap.sh 6 1 3 6 1 8 3 3 5 6 8 5 5
+      ░▒▓░█▒
+      ▒▓▓█▓▓
 EOF
   }
 
@@ -89,22 +86,5 @@ EOF
     exit 0
   fi
 
-  spark ${@:-`cat`}
+  heatmap ${@:-`cat`}
 fi
-
-
-heatmap()
-{
-    ticks=(░ ░ ▒ ▒ ▓ ▓ █ █)
-
-    cat <<EOF
-░▒▓░█▒
-▒▓▓█▓▓
-█▓▓▓▒▓
-▒▓▒█▓▒
-░▒▓███
-EOF
-
-}
-
-heatmap

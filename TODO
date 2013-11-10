@@ -1,4 +1,3 @@
-fork spark and setup options for grid size spec and replace with block chars for heatmap
 define manipulation necessary for passing values to app
 https://github.com/holman/spark/wiki/Wicked-Cool-Usage demo zabbix CLI example
 https://www.zabbix.org/zabbix/chart.php?itemid=16&period=10800 zabbix spark example
