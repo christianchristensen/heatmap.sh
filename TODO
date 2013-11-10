@@ -2,4 +2,3 @@ define manipulation necessary for passing values to app
 https://github.com/holman/spark/wiki/Wicked-Cool-Usage demo zabbix CLI example
 https://www.zabbix.org/zabbix/chart.php?itemid=16&period=10800 zabbix spark example
 validate data - divide by x width - are there equal number of rows
-usage example data http://bl.ocks.org/tjdecke/5558084
