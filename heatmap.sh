@@ -7,7 +7,6 @@
 # (based off sparklines: https://github.com/holman/spark)
 #
 # Input X:size, Y (inferred/defaulted from X size)
-# Input values populate based on X,Y size
 
 # Generates the heatmap.
 #
@@ -24,7 +23,7 @@ _echo()
 
 heatmap()
 {
-  local n numbers=
+  local n first=1 width=1 numbers=
 
   # find min/max values
   local min=0xffffffff max=0
@@ -35,9 +34,14 @@ heatmap()
     # round the number but that doesn't work on OS X (bash3) nor does
     # `awk '{printf "%.0f",$1}' <<< $n` work, so just cut it off
     n=${n%.*}
-    (( n < min )) && min=$n
-    (( n > max )) && max=$n
-    numbers=$numbers${numbers:+ }$n
+    if [ $first -eq 1 ]; then
+      first=0
+      width=$n
+    else
+      (( n < min )) && min=$n
+      (( n > max )) && max=$n
+      numbers=$numbers${numbers:+ }$n
+    fi
   done
 
   # print ticks
@@ -46,19 +50,21 @@ heatmap()
   local f=$(( (($max-$min)<<8)/(${#ticks[@]}-1) ))
   (( f < 1 )) && f=1
 
+  local count=0 returnonlast=0
   for n in $numbers
   do
+    returnonlast=0
     _echo -n ${ticks[$(( ((($n-$min)<<8)/$f) ))]}
+    # bump line based on x-width
+    count=$(( $count+1 ))
+    if [ $(($count % $width)) -eq 0 ]; then
+      _echo
+      returnonlast=1
+    fi
   done
-  _echo
-
-    cat <<EOF
-░▒▓░█▒
-▒▓▓█▓▓
-█▓▓▓▒▓
-▒▓▒█▓▒
-░▒▓███
-EOF
+  if [ $returnonlast -ne 1 ]; then
+    _echo
+  fi
 }
 
 # If we're being sourced, don't worry about such things

@@ -11,63 +11,38 @@ it_shows_help_with_no_argv() {
 it_graphs_argv_data() {
   graph="$($heatmap 1,5,22,13,5)"
 
-  test $graph = '▁▂█▅▂'
+  test $graph = '░
+█
+▒
+░'
 }
 
 it_charts_pipe_data() {
-  data="0,30,55,80,33,150"
+  data="1,30,55,80,33,150"
   graph="$(echo $data | $heatmap)"
 
-  test $graph = '▁▂▃▄▂█'
+  test $graph = '░
+░
+▒
+░
+█'
 }
 
 it_charts_spaced_data() {
-  data="0 30 55 80 33 150"
+  data="6 1 3 6 1 8 3 3 5 6 8 5 5"
   graph="$($heatmap $data)"
 
-  test $graph = '▁▂▃▄▂█'
+  test $graph = '░▒▓░█▒
+▒▓▓█▓▓'
 }
 
 it_charts_way_spaced_data() {
-  data="0 30               55 80 33     150"
+  data="1 30               55 80 33     150"
   graph="$($heatmap $data)"
 
-  test $graph = '▁▂▃▄▂█'
-}
-
-it_handles_decimals() {
-  data="5.5,20"
-  graph="$($heatmap $data)"
-
-  test $graph = '▁█'
-}
-
-it_charts_100_lt_300() {
-  data="1,2,3,4,100,5,10,20,50,300"
-  graph="$($heatmap $data)"
-
-  test $graph = '▁▁▁▁▃▁▁▁▂█'
-}
-
-it_charts_50_lt_100() {
-  data="1,50,100"
-  graph="$($heatmap $data)"
-
-  test $graph = '▁▄█'
-}
-
-it_charts_4_lt_8() {
-  data="2,4,8"
-  graph="$($heatmap $data)"
-
-  test $graph = '▁▃█'
-
-}
-
-it_charts_no_tier_0() {
-  data="1,2,3,4,5"
-  graph="$($heatmap $data)"
-
-  test $graph = '▁▂▄▆█'
-
+  test $graph = '░
+░
+▒
+░
+█'
 }
