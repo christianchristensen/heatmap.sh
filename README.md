@@ -1,5 +1,7 @@
 # `heatmap.sh` - Heatmap cli
 
+[heatmaps in your terminal](http://en.wikipedia.org/wiki/Heat_map)
+
 ```
 X     Z
 |   /
@@ -14,15 +16,16 @@ Use:
 *  ░ Light shaded block
 *  ▒ Medium shaded block
 *  ▓ Dark shaded block
+*  █ Darker shaded block
 
 Random sample output:
 
 ```
-░▒▓░▒
-▒▓▓▓▓
-▓▓▓▒▓
-▒▓▒▓▒
-░▒▓▓▓
+░▒▓░█▒
+▒▓▓█▓▓
+█▓▓▓▒▓
+▒▓▒█▓▒
+░▒▓███
 ```
 
 

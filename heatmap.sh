@@ -1,28 +1,19 @@
 #!/usr/bin/env bash
 #
-# spark
-# https://github.com/holman/spark
-#
-# Generates sparklines for a set of data.
-#
-# Here's a a good web-based sparkline generator that was a bit of inspiration
-# for spark:
-#
-#   https://datacollective.org/sparkblocks
-#
-# spark takes a comma-separated list of data and then prints a sparkline out of
-# it.
-#
-# Examples:
-#
-#   spark 1 5 22 13 53
-#   # => ▁▁▃▂▇
-#
-#   spark 0 30 55 80 33 150
-#   # => ▁▂▃▅▂▇
-#
-#   spark -h
-#   # => Prints the spark help text.
+# heatmap
+#  https://github.com/christianchristensen/heatmap.sh
+# Heatmaps in your terminal
+# ex
+# $ heatmap.sh (x width) (v1 v2 vn values)
+# $ heatmap.sh 6 1 3 6 1 8 3 3 5 6 8 5 5 ...
+# ░▒▓░█▒
+# ▒▓▓█▓▓
+# █▓▓▓▒▓
+# ▒▓▒█▓▒
+# ░▒▓███
+
+# Input X:size, Y (inferred/defaulted from X size)
+# Input values populate based on X,Y size
 
 # Generates sparklines.
 #
@@ -97,3 +88,20 @@ EOF
 
   spark ${@:-`cat`}
 fi
+
+
+heatmap()
+{
+    ticks=(░ ░ ▒ ▒ ▓ ▓ █ █)
+
+    cat <<EOF
+░▒▓░█▒
+▒▓▓█▓▓
+█▓▓▓▒▓
+▒▓▒█▓▒
+░▒▓███
+EOF
+
+}
+
+heatmap
