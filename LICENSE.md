@@ -1,6 +1,7 @@
 The MIT License
 
-Copyright (c) Zach Holman, http://zachholman.com
+Copyright (c) Chris Christensen, http://imetchrischris.com (heatmap.sh; spark fork)
+Copyright (c) Zach Holman, http://zachholman.com (spark)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

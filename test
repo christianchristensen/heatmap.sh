@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Run roundup tests for spark.
+# Run roundup tests for heatmap.sh.
 #
 
 roundup=$(which roundup)
